@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_real_estate_module" model="ir.actions.act_window">
+        <field name="name">Property</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="context">{'search_default_date_availability': 1}</field>
+        <field name="res_model">real.estate</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record id="action_property_module" model="ir.actions.act_window">
+        <field name="name">Property types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record id="action_property_tags_module" model="ir.actions.act_window">
+        <field name="name">Property tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.property.tags</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_estate_root"
+              name="Real Estate"
+              sequence="10"/>
+
+    <!--    main-->
+
+    <menuitem id="menu_advert_root"
+              name="Advertisement"
+              parent="menu_estate_root"
+              sequence="10"/>
+
+    <menuitem id="settings_root"
+              name="Settings"
+              parent="menu_estate_root"
+              sequence="10"/>
+
+    <!--1 layer-->
+
+    <menuitem id="menu_advert"
+              name="Property"
+              parent="menu_advert_root"
+              action="action_real_estate_module"
+              sequence="10"/>
+
+    <menuitem id="settings_property"
+              name="Property types"
+              parent="settings_root"
+              action="action_property_module"
+              sequence="10"/>
+
+    <menuitem id="settings_property_tags"
+              name="Property tags"
+              parent="settings_root"
+              action="action_property_tags_module"
+              sequence="10"/>
+    <!--2 layer-->
+
+</odoo>

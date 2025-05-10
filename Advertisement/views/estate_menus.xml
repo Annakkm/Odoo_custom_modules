@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_advertisement_module" model="ir.actions.act_window">
+        <field name="name">Property</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">advertisement.estate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_estate_root"
+              name="Estate Advert"
+              sequence="10"/>
+
+    <menuitem id="menu_advertisement_root"
+              name="Advertisement"
+              parent="menu_estate_root"
+              sequence="10"/>
+
+    <menuitem id="menu_property_root"
+              name="Property"
+              parent="menu_advertisement_root"
+              action="action_advertisement_module"
+              sequence="10"/>
+</odoo>

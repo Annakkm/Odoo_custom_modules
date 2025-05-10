@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--  Template Real Estate Properties  -->
+    <template id="report_property_estate_users_id">
+        <t t-foreach="docs" t-as="property">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            <strong>Salesman:</strong>
+                            <span t-field="property.name"/>
+                        </h2>
+                        <t t-set="offers" t-value="property.mapped('property_ids')"/>
+                        <t t-foreach="offers" t-as="offers_salesman">
+                            <div>
+                                <h4>
+                                    <span t-field="offers_salesman.name"/>
+                                </h4>
+                                <div>
+                                    <strong>Expected_price:</strong>
+                                    <span t-field="offers_salesman.expected_price"/>
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <strong>Status:</strong>
+                                    <span t-field="offers_salesman.state"/>
+                                </div>
+                                <div style="margin-bottom: 60px;"
+                                     t-call="EstateReal.report_property_table_id_for_res_users"/>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_property_table_id_for_res_users">
+        <t t-set="offers" t-value="offers_salesman.mapped('offer_ids')"/>
+        <t t-if="offers">
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Price</th>
+                            <th>Partner</th>
+                            <th>Validity(days)</th>
+                            <th>DeadLine</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="offers" t-as="offer">
+                            <td>
+                                <span t-field="offer.price"/>
+                            </td>
+                            <td>
+                                <span t-field="offer.partner_id"/>
+                            </td>
+                            <td>
+                                <span t-field="offer.validity"/>
+                            </td>
+                            <td>
+                                <span t-field="offer.date_deadline"/>
+                            </td>
+                            <td>
+                                <span t-field="offer.status"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+        <t t-else="">
+            <div>
+                <span colspan="5">No offer yet</span>
+                <!--                <tr>-->
+                <!--                    <td colspan="5">No offer yet</td>-->
+                <!--                </tr>-->
+            </div>
+        </t>
+    </template>
+
+
+    <!--  Template Offers  -->
+    <template id="report_property_offers_id">
+        <t t-foreach="docs" t-as="property">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            <div t-field="property.name"/>
+                        </h2>
+                        <div>
+                            <strong>Salesman:</strong>
+                            <span t-field="property.salesman_id.name"/>
+                        </div>
+                        <div>
+                            <strong>Expected price:</strong>
+                            <span t-field="property.expected_price"/>
+                        </div>
+                        <div>
+                            <strong>Status:</strong>
+                            <span t-field="property.state"/>
+                        </div>
+                        <div t-call="EstateReal.report_property_table_id"/>
+                        <!--                        t-call="your_module.report_property_table_id"/> -->
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_property_table_id">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Price</th>
+                    <th>Partner</th>
+                    <th>Validity(days)</th>
+                    <th>DeadLine</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-set="offers" t-value="property.mapped('offer_ids')"/>
+                <t t-if="offers">
+                    <tr t-foreach="offers" t-as="offer">
+                        <td>
+                            <span t-field="offer.price"/>
+                        </td>
+                        <td>
+                            <span t-field="offer.partner_id"/>
+                        </td>
+                        <td>
+                            <span t-field="offer.validity"/>
+                        </td>
+                        <td>
+                            <span t-field="offer.date_deadline"/>
+                        </td>
+                        <td>
+                            <span t-field="offer.status"/>
+                        </td>
+                    </tr>
+                </t>
+                <t t-else="">
+                    <tr>
+                        <td colspan="5">No offer yet</td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </template>
+</odoo>

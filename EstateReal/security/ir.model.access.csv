@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+,,,,,,,
+EstateReal.access_estate_property_type,access_estate_property_type,EstateReal.model_estate_property_type,base.group_user,1,1,1,1
+EstateReal.access_estate_property_tags,access_estate_property_tags,EstateReal.model_estate_property_tags,base.group_user,1,1,1,1
+EstateReal.access_estate_property_offer,access_estate_property_offer,EstateReal.model_estate_property_offer,base.group_user,1,1,1,1
+,
+,,,,
